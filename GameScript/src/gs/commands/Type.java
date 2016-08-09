@@ -125,7 +125,7 @@ public class Type implements Command {
 			key = KeyEvent.VK_PERIOD;
 		} else if (c == ':') {
 			pushShift = true;
-			key = KeyEvent.VK_COLON;
+			key = KeyEvent.VK_SEMICOLON;
 		} else if (c == '/') {
 			key = KeyEvent.VK_SLASH;
 		}
