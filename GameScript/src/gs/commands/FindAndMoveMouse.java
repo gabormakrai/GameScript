@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import gs.log.Logger;
 import gs.main.Command;
 import gs.robot.RobotService;
+import gs.robot.ScreenCaptureService;
 
 public class FindAndMoveMouse implements Command {
 	
@@ -49,7 +50,7 @@ public class FindAndMoveMouse implements Command {
 			
 			logger.log("FindAndMoveMouse", "Capture screen to " + screenFile);
 			
-			if (!executeCommand("import -window root " + screenFile)) {
+			if (!ScreenCaptureService.capture(screenFile)) {
 				continue;
 			}
 			
@@ -134,23 +135,5 @@ public class FindAndMoveMouse implements Command {
 			
 		}
 		
-	}
-		
-	private boolean executeCommand(String command) {
-		
-		try {
-			
-			Process p = Runtime.getRuntime().exec(command);
-			
-			p.waitFor();
-			
-		} catch (Exception e) {
-			
-			return false;
-			
-		}
-
-		return true;
-
 	}		
 }
