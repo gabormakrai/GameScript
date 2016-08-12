@@ -7,6 +7,7 @@ import gs.commands.SetVariable;
 import gs.commands.Sleep;
 import gs.commands.SpecialType;
 import gs.commands.Type;
+import gs.commands.WaitFor;
 import gs.commands.MouseClick.MouseClickOption;
 import gs.commands.SpecialType.SpecialTypeOption;
 import gs.commands.MouseMove;
@@ -145,6 +146,10 @@ public class CommandFactory {
 			String key = parameters[0];
 			boolean variables = Boolean.valueOf(parameters[1]);
 			command = new Type(key, variables);
+		} else if (line.startsWith("waitfor")) {
+			String[] parameters = line.substring(line.indexOf("(") + 1, line.indexOf(")")).split("\\,");
+			String waitFor = parameters[0];
+			command = new WaitFor(waitFor);
 		}
 		
 		if (command == null) {
