@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import gs.commands.CodeBlock;
+import gs.commands.InfiniteLoop;
 import gs.exception.CompileException;
 import gs.main.Command;
 
@@ -74,6 +75,13 @@ public class CommandParser {
 							throw new CompileException("Line " + lineCounter + ": No function called '" + blockNameToCall+ "' defined...", new Exception());
 						}
 						command = codeBlock;
+					} else if (line.startsWith("infiniteloop")) {
+						String blockNameToCall = line.substring(line.indexOf(" ") + 1);
+						CodeBlock codeBlock = codeblocks.get(blockNameToCall);
+						if (codeBlock == null) {
+							throw new CompileException("Line " + lineCounter + ": No function called '" + blockNameToCall+ "' defined...", new Exception());
+						}
+						command = new InfiniteLoop(codeBlock);
 					} else {
 						try {
 							command = CommandFactory.parseLine(line);
