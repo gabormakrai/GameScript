@@ -120,7 +120,7 @@ public class Type implements Command {
 			key = KeyEvent.VK_9;
 		} else if (c == '@') {
 			pushShift = true;
-			key = KeyEvent.VK_AT;
+			key = KeyEvent.VK_QUOTE;
 		} else if (c == '.') {
 			key = KeyEvent.VK_PERIOD;
 		} else if (c == ':') {
