@@ -10,7 +10,7 @@ import gs.robot.RobotService;
 public class SpecialType implements Command {
 	
 	public static enum SpecialTypeOption {
-		ENTER, TAB, DELETE
+		ENTER, TAB, DELETE, CTRLT, CTRLW
 	}
 	
 	final SpecialTypeOption key;
@@ -32,8 +32,22 @@ public class SpecialType implements Command {
 			keyCode = KeyEvent.VK_ENTER;
 		} else if (key == SpecialTypeOption.DELETE) {
 			keyCode = KeyEvent.VK_DELETE;
+		} else if (key == SpecialTypeOption.CTRLW) {
+			keyCode = KeyEvent.VK_W;
+		} else if (key == SpecialTypeOption.CTRLT) {
+			keyCode = KeyEvent.VK_T;
 		}
 		for (int i = 0; i < strikes; ++i) {
+			
+			if (key == SpecialTypeOption.CTRLT || key == SpecialTypeOption.CTRLW) {
+				RobotService.getRobot().keyPress(KeyEvent.VK_CONTROL);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// do nothing
+				}
+			}
+			
 			RobotService.getRobot().keyPress(keyCode);
 			try {
 				Thread.sleep(100);
@@ -46,6 +60,16 @@ public class SpecialType implements Command {
 			} catch (InterruptedException e) {
 				// do nothing
 			}
+			
+			if (key == SpecialTypeOption.CTRLT || key == SpecialTypeOption.CTRLW) {
+				RobotService.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// do nothing
+				}
+			}
+			
 		}
 	}
 
