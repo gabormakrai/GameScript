@@ -123,6 +123,10 @@ public class FindAndMoveMouse implements Command {
 				
 				logger.log("FindAndMoveMouse", "Target has not been found :( Sleep for " + retrySleep + "ms...");
 				
+				logger.log("FindAndMoveMouse", "Move mouse to (600,600)");
+				
+				RobotService.getRobot().mouseMove(600,600);				
+				
 				try {
 					Thread.sleep(retrySleep);
 				} catch (InterruptedException e) {
